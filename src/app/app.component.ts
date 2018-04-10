@@ -1,22 +1,67 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Platform, Nav, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
+import { Nav } from 'ionic-angular/navigation/nav-interfaces';
+import { HomePage } from '../pages/home/home';
+
+export interface IMenu{
+  icon: string;
+  component: any;
+  hint: string;
+}
 
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp {
+export class MyApp implements OnInit{
   rootPage:any = TabsPage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  @ViewChild(Nav) nav: Nav;
+
+  private menu: Array<IMenu> = [];
+  static menuCurrent: IMenu;
+
+  constructor(
+    private platform: Platform, 
+    private statusBar: StatusBar, 
+    private splashScreen: SplashScreen,
+    private menuCtrl: MenuController) {
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
     });
+  }
+
+
+  ngOnInit()
+  {
+    this.menu.push(
+      {component: HomePage, hint: 'Inicial', icon: 'home'},
+    )
+  }
+
+  private _defineColor(menu: IMenu): string
+  {
+    if(MyApp.menuCurrent) return (typeof MyApp.menuCurrent.component != 'undefined' && MyApp.menuCurrent.component == menu.component ? 'red' : '');
+
+    return (this.rootPage == menu.component ? 'red' : '');
+  }
+
+  private _goTo(menu: IMenu)
+  {
+    MyApp.menuCurrent = menu;
+    this.menuCtrl.close();
+    this.nav.setRoot(menu.component);
+  }
+
+  private _parseIcon(object: IMenu): string{
+    return object.icon;
+  }
+
+  private _goToHome(){
+    this._goTo({component: HomePage, hint: 'Inicial', icon: 'home'});
   }
 }

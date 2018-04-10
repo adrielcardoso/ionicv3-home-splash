@@ -1,1 +1,40 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu type="overlay" [content]="mycontent">
+    <ion-toolbar primary>
+            <ion-title>Menu</ion-title>
+            <ion-buttons right="" class="bar-buttons bar-buttons-ios">
+                <button menuClose icon-only="" ion-button="" class="disable-hover bar-button bar-button-ios bar-button-default bar-button-default-ios">
+                    <span class="button-inner">
+                        <ion-icon name="close"></ion-icon>
+                    </span>
+                </button>
+            </ion-buttons>
+    </ion-toolbar>
+    <ion-content class="mmenu">
+        <ion-list>
+            <ion-item menuClose detail-none>
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-item>
+            <ion-grid>
+                <ion-row class="mboximage">
+                    <ion-col (click)="_goToHome()">
+                        <img src="http://media.fooducate.com/products/images/brands/burgerking.jpeg" />
+                    </ion-col>
+                </ion-row>
+                <ion-row class="mtitle">
+                    MENU
+                </ion-row>
+                <!-- lista menu -->
+                <ion-row>
+                    <ion-list>
+                        <p *ngFor="let single of menu" (click)="_goTo(single)" [style.color]="_defineColor(single)">
+                            <ion-icon [name]="_parseIcon(single)" item-left></ion-icon>
+                            <span  *ngIf="single.icon == 'pin'" [innerHTML]="single.hint"></span>
+                            <label *ngIf="single.icon != 'pin'" [innerHTML]="single.hint"></label>
+                        </p>
+                    </ion-list>
+                </ion-row>
+            </ion-grid>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+<ion-nav #mycontent [root]="rootPage"></ion-nav>

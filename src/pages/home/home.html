@@ -1,6 +1,13 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>
+      <img src="http://media.fooducate.com/products/images/brands/burgerking.jpeg" style="width: 3em;" />
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button icon-only menuToggle>
+          <ion-icon name="menu" (click)="openMenu=true;"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 <ion-content padding class="page-home">
