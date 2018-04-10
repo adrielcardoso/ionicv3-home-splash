@@ -4,7 +4,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
-import { Nav } from 'ionic-angular/navigation/nav-interfaces';
 import { HomePage } from '../pages/home/home';
 
 export interface IMenu{
@@ -29,9 +28,9 @@ export class MyApp implements OnInit{
     private statusBar: StatusBar, 
     private splashScreen: SplashScreen,
     private menuCtrl: MenuController) {
-    platform.ready().then(() => {
-      statusBar.styleDefault();
-      splashScreen.hide();
+    this.platform.ready().then(() => {
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
     });
   }
 
