@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+        Clientes
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button icon-only menuToggle>
+          <ion-icon name="menu" (click)="openMenu=true;"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+        <button ion-button icon-only (click)="addClientNew()">
+            <ion-icon name="add"></ion-icon>
+        </button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-searchbar
+    [(ngModel)]="myInput"
+    [showCancelButton]="shouldShowCancel"
+    (ionInput)="onInput($event)"
+    (ionCancel)="onCancel($event)">
+  </ion-searchbar>
+</ion-header>
+<ion-content class="page-client">
+    <ion-content>
+      <ion-item-group *ngFor="let letter of clientsByLetter">
+        <ion-item-divider color="light">{{ letter.letter }}</ion-item-divider>
+        <ion-item *ngFor="let client of letter.clients">
+            <button ion-item>
+                {{ client.firstName }} {{ client.lastName }}
+            </button> 
+        </ion-item>
+      </ion-item-group>
+    </ion-content>
+</ion-content>

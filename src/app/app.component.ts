@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { HomePage } from '../pages/home/home';
+import { ClientPage } from '../pages/client/list/client';
 
 export interface IMenu{
   icon: string;
@@ -39,6 +40,7 @@ export class MyApp implements OnInit{
   {
     this.menu.push(
       {component: HomePage, hint: 'Inicial', icon: 'home'},
+      {component: ClientPage, hint: 'Cliente', icon: 'contact'},
     )
   }
 
@@ -46,7 +48,7 @@ export class MyApp implements OnInit{
   {
     if(MyApp.menuCurrent) return (typeof MyApp.menuCurrent.component != 'undefined' && MyApp.menuCurrent.component == menu.component ? 'red' : '');
 
-    return (this.rootPage == menu.component ? 'red' : '');
+    return (this.rootPage == menu.component ? 'yellow' : '');
   }
 
   private _goTo(menu: IMenu)

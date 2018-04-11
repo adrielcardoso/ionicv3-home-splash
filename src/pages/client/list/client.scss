@@ -1,0 +1,26 @@
+.page-client {
+    background: #4267b2;
+    img{
+        position: relative;
+        margin: auto;
+        width: 50%;
+        height: auto;
+        margin-left: 25%;
+    }
+    ion-col{
+        text-align: center;
+    }
+    .grid{
+        margin-top:3em;
+    }
+    .card-ios{
+        padding: 1em;
+    }
+    button{
+        padding: 0;
+    }
+    ion-item-divider{
+        font-size: 22px;
+        font-weight: 800;
+    }
+}
