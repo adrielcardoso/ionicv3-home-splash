@@ -1,7 +1,7 @@
 <ion-header>
    <ion-navbar>
         <ion-title>
-            Novo Cliente
+            {{ _client.id ? "Atualizar Cliente" : "Novo Cliente" }}
         </ion-title>
         <ion-buttons start>
         <button ion-button icon-only menuToggle>
@@ -10,6 +10,28 @@
         </ion-buttons>
     </ion-navbar>
 </ion-header>
-<ion-content class="page-clientNew">
-  
+<ion-content padding class="page-clientNew">
+    <form (ngSubmit)="_parseClient()">
+        <ion-item>
+            <ion-label>Nome</ion-label>
+            <ion-input type="text" [(ngModel)]="_client.nome" name="nome"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>E-mail</ion-label>
+            <ion-input type="text" [(ngModel)]="_client.email" name="email"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Telefone</ion-label>
+            <ion-input type="text" [(ngModel)]="_client.telefone" name="telefone"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>CPF</ion-label>
+            <ion-input type="text" [(ngModel)]="_client.cnpjcpf" name="cnpjcpf"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Endereço</ion-label>
+            <ion-input type="text" [(ngModel)]="_client.endereco" name="endereco"></ion-input>
+        </ion-item>
+        <button ion-button type="submit" block>{{ _client.id ? "Atualizar" : "Cadastrar" }}</button>
+    </form>
 </ion-content>

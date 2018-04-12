@@ -15,7 +15,9 @@
     </ion-buttons>
   </ion-navbar>
   <ion-searchbar
-    [(ngModel)]="myInput"
+    autocomplete="on"
+    placeholder="Buscar"
+    [(ngModel)]="searchText"
     [showCancelButton]="shouldShowCancel"
     (ionInput)="onInput($event)"
     (ionCancel)="onCancel($event)">
@@ -25,9 +27,9 @@
     <ion-content>
       <ion-item-group *ngFor="let letter of clientsByLetter">
         <ion-item-divider color="light">{{ letter.letter }}</ion-item-divider>
-        <ion-item *ngFor="let client of letter.clients">
-            <button ion-item>
-                {{ client.firstName }} {{ client.lastName }}
+        <ion-item *ngFor="let client of letter.clients | filter : searchText">
+            <button ion-item (click)="updateClientNew(client)">
+                {{ client.nome }}
             </button> 
         </ion-item>
       </ion-item-group>

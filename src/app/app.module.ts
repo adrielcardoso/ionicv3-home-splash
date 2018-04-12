@@ -10,7 +10,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { ClientPage } from '../pages/client/list/client';
+import { ClientPage, FilterPipe } from '../pages/client/list/client';
 import { ClientNewPage } from '../pages/client/new/clientNew';
 
 @NgModule({
@@ -22,6 +22,7 @@ import { ClientNewPage } from '../pages/client/new/clientNew';
     TabsPage,
     ClientPage,
     ClientNewPage,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
